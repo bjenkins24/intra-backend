@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -14,7 +13,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard'     => 'auth0',
         'passwords' => 'users',
     ],
 
@@ -37,8 +36,12 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
+        ],
+        'auth0' => [
+            'driver'   => 'auth0',
+            'provider' => 'auth0',
         ],
     ],
 
@@ -62,7 +65,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model'  => App\Models\User::class,
+        ],
+        'auth0' => [
+            'driver'     => 'auth0',
+            'repository' => \Auth0\Laravel\Auth\User\Repository::class,
         ],
 
         // 'users' => [
@@ -89,8 +96,8 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
+            'table'    => 'password_resets',
+            'expire'   => 60,
             'throttle' => 60,
         ],
     ],
@@ -107,5 +114,4 @@ return [
     */
 
     'password_timeout' => 10800,
-
 ];

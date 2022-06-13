@@ -7,12 +7,22 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "prepare": "husky install",
+        "prettier": "prettier . --write"
     },
     "devDependencies": {
+        "@prettier/plugin-php": "^0.18.8",
         "axios": "^0.25",
+        "husky": "^8.0.1",
         "laravel-mix": "^6.0.6",
+        "lint-staged": "^13.0.1",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "postcss": "^8.1.14",
+        "prettier": "^2.6.2"
+    },
+    "lint-staged": {
+        "*.{php}": "vendor/bin/php-cs-fixer fix --config=./php-cs-fixer.php",
+        "*.{php,css}": "prettier --write"
     }
 }
